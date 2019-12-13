@@ -2,12 +2,14 @@ input = "1,12,2,3,1,1,2,3,1,3,4,3,1,5,0,3,2,1,6,19,2,19,6,23,1,23,5,27,1,9,27,31
 
 input_arr = input.split(",")
 
-for i in range(0, len(input_arr), 4):
-  if input_arr[i] == '1': # Add
-      input_arr[int(input_arr[i+3])] = int(input_arr[int(input_arr[i+1])]) + int(input_arr[int(input_arr[i+2])])
-  elif input_arr[i] == '2': # Multiply
-      input_arr[int(input_arr[i+3])] = int(input_arr[int(input_arr[i+1])]) * int(input_arr[int(input_arr[i+2])])
-  else: # Terminate program
-      break
+def intcode(arr):
+    for i in range(0, len(arr), 4):
+        if arr[i] == '1':
+            arr[int(arr[i+3])] = int(arr[int(arr[i+1])]) + int(arr[int(arr[i+2])])
+        elif arr[i] == '2':
+            arr[int(arr[i+3])] = int(arr[int(arr[i+1])]) * int(arr[int(arr[i+2])])
+        else:
+            break
+    return arr
 
-print(input_arr[0])
+print(intcode(input_arr)[0])
